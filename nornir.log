@@ -1,0 +1,199 @@
+2022-01-03 12:04:02,464 -  nornir.core -     INFO -        run() - Running task 'pull_cdp' with args {} on 15 hosts
+2022-01-03 12:04:02,475 - nornir.core.task -    ERROR -      start() - Host 'core-sw': task 'send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir_scrapli/tasks/core/send_command.py", line 36, in send_command
+    scrapli_conn = task.host.get_connection("scrapli", task.nornir.config)
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir/core/inventory.py", line 494, in get_connection
+    self.open_connection(
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir/core/inventory.py", line 546, in open_connection
+    conn_obj.open(
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir_scrapli/connection.py", line 91, in open
+    connection = Scrapli(**parameters, platform=final_platform)
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/scrapli/factory.py", line 513, in __new__
+    final_conn = final_driver(**final_kwargs)
+TypeError: __init__() missing 1 required positional argument: 'host'
+
+2022-01-03 12:04:02,475 - nornir.core.task -    ERROR -      start() - Host 'eur-switch': task 'send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir_scrapli/tasks/core/send_command.py", line 36, in send_command
+    scrapli_conn = task.host.get_connection("scrapli", task.nornir.config)
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir/core/inventory.py", line 494, in get_connection
+    self.open_connection(
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir/core/inventory.py", line 546, in open_connection
+    conn_obj.open(
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir_scrapli/connection.py", line 91, in open
+    connection = Scrapli(**parameters, platform=final_platform)
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/scrapli/factory.py", line 513, in __new__
+    final_conn = final_driver(**final_kwargs)
+TypeError: __init__() missing 1 required positional argument: 'host'
+
+2022-01-03 12:04:02,476 - nornir.core.task -    ERROR -      start() - Host 'core-sw': task 'pull_cdp' failed with traceback:
+Traceback (most recent call last):
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "reconfig_description.py", line 10, in pull_cdp
+    output = task.run(task=send_command, command="show cdp neighbors")
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: send_command (failed)
+
+
+2022-01-03 12:04:02,476 - nornir.core.task -    ERROR -      start() - Host 'eur-switch': task 'pull_cdp' failed with traceback:
+Traceback (most recent call last):
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "reconfig_description.py", line 10, in pull_cdp
+    output = task.run(task=send_command, command="show cdp neighbors")
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: send_command (failed)
+
+
+2022-01-03 12:04:02,507 - nornir.core.task -    ERROR -      start() - Host 'us-switch': task 'send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir_scrapli/tasks/core/send_command.py", line 36, in send_command
+    scrapli_conn = task.host.get_connection("scrapli", task.nornir.config)
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir/core/inventory.py", line 494, in get_connection
+    self.open_connection(
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir/core/inventory.py", line 546, in open_connection
+    conn_obj.open(
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir_scrapli/connection.py", line 91, in open
+    connection = Scrapli(**parameters, platform=final_platform)
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/scrapli/factory.py", line 513, in __new__
+    final_conn = final_driver(**final_kwargs)
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/scrapli/driver/core/cisco_iosxe/sync_driver.py", line 127, in __init__
+    super().__init__(
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/scrapli/driver/network/sync_driver.py", line 48, in __init__
+    super().__init__(
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/scrapli/driver/generic/sync_driver.py", line 40, in __init__
+    super().__init__(
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/scrapli/driver/base/sync_driver.py", line 13, in __init__
+    super().__init__(**kwargs)
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/scrapli/decorators.py", line 453, in decorate
+    return wrapped_func(*args, **kwargs)
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/scrapli/driver/base/base_driver.py", line 161, in __init__
+    self.host, self.port = self._setup_host(host=host, port=port)
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/scrapli/driver/base/base_driver.py", line 278, in _setup_host
+    return host.strip(), port
+AttributeError: 'float' object has no attribute 'strip'
+
+2022-01-03 12:04:02,508 - nornir.core.task -    ERROR -      start() - Host 'us-switch': task 'pull_cdp' failed with traceback:
+Traceback (most recent call last):
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "reconfig_description.py", line 10, in pull_cdp
+    output = task.run(task=send_command, command="show cdp neighbors")
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: send_command (failed)
+
+
+2022-01-03 12:04:02,510 - nornir.core.task -    ERROR -      start() - Host 'apac-switch': task 'send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir_scrapli/tasks/core/send_command.py", line 36, in send_command
+    scrapli_conn = task.host.get_connection("scrapli", task.nornir.config)
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir/core/inventory.py", line 494, in get_connection
+    self.open_connection(
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir/core/inventory.py", line 546, in open_connection
+    conn_obj.open(
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir_scrapli/connection.py", line 91, in open
+    connection = Scrapli(**parameters, platform=final_platform)
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/scrapli/factory.py", line 513, in __new__
+    final_conn = final_driver(**final_kwargs)
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/scrapli/driver/core/cisco_iosxe/sync_driver.py", line 127, in __init__
+    super().__init__(
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/scrapli/driver/network/sync_driver.py", line 48, in __init__
+    super().__init__(
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/scrapli/driver/generic/sync_driver.py", line 40, in __init__
+    super().__init__(
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/scrapli/driver/base/sync_driver.py", line 13, in __init__
+    super().__init__(**kwargs)
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/scrapli/decorators.py", line 453, in decorate
+    return wrapped_func(*args, **kwargs)
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/scrapli/driver/base/base_driver.py", line 161, in __init__
+    self.host, self.port = self._setup_host(host=host, port=port)
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/scrapli/driver/base/base_driver.py", line 278, in _setup_host
+    return host.strip(), port
+AttributeError: 'int' object has no attribute 'strip'
+
+2022-01-03 12:04:02,510 - nornir.core.task -    ERROR -      start() - Host 'apac-switch': task 'pull_cdp' failed with traceback:
+Traceback (most recent call last):
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "reconfig_description.py", line 10, in pull_cdp
+    output = task.run(task=send_command, command="show cdp neighbors")
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: send_command (failed)
+
+
+2022-01-03 12:04:02,644 - nornir.core.task -    ERROR -      start() - Host 'R1': task 'send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/scrapli/transport/plugins/system/transport.py", line 126, in read
+    buf = self.session.read(65535)
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/scrapli/transport/plugins/system/ptyprocess.py", line 437, in read
+    raise EOFError("End Of File (EOF). Empty string style platform.")
+EOFError: End Of File (EOF). Empty string style platform.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir_scrapli/tasks/core/send_command.py", line 36, in send_command
+    scrapli_conn = task.host.get_connection("scrapli", task.nornir.config)
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir/core/inventory.py", line 494, in get_connection
+    self.open_connection(
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir/core/inventory.py", line 546, in open_connection
+    conn_obj.open(
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir_scrapli/connection.py", line 98, in open
+    connection.open()
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/scrapli/driver/base/sync_driver.py", line 86, in open
+    self.channel.channel_authenticate_ssh(
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/scrapli/decorators.py", line 276, in decorate
+    return self._multiprocessing_timeout(
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/scrapli/decorators.py", line 337, in _multiprocessing_timeout
+    return future.result()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/concurrent/futures/_base.py", line 432, in result
+    return self.__get_result()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/concurrent/futures/_base.py", line 388, in __get_result
+    raise self._exception
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/scrapli/channel/sync_channel.py", line 288, in channel_authenticate_ssh
+    buf = self.read()
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/scrapli/channel/sync_channel.py", line 69, in read
+    buf = self.transport.read()
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/scrapli/decorators.py", line 95, in decorate
+    return self._multiprocessing_timeout(
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/scrapli/decorators.py", line 173, in _multiprocessing_timeout
+    return future.result()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/concurrent/futures/_base.py", line 432, in result
+    return self.__get_result()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/concurrent/futures/_base.py", line 388, in __get_result
+    raise self._exception
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/scrapli/transport/plugins/system/transport.py", line 133, in read
+    raise ScrapliConnectionError(msg) from exc
+scrapli.exceptions.ScrapliConnectionError: encountered EOF reading from transport; typically means the device closed the connection
+
+2022-01-03 12:04:02,645 - nornir.core.task -    ERROR -      start() - Host 'R1': task 'pull_cdp' failed with traceback:
+Traceback (most recent call last):
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "reconfig_description.py", line 10, in pull_cdp
+    output = task.run(task=send_command, command="show cdp neighbors")
+  File "/Users/rishabh.parihar/Documents/NetDevOpsToolkit/nornir/venv/lib/python3.8/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: send_command (failed)
+
+
