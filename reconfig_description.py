@@ -1,5 +1,6 @@
 from nornir import InitNornir
 from nornir_scrapli.tasks import send_command
+from nornir_scrapli.tasks import send_configs
 from nornir_utils.plugins.functions import print_result
 import ipdb
 from pprint import pprint
@@ -9,19 +10,23 @@ nr = InitNornir(config_file="config.yml")
 def pull_cdp(task):
     output = task.run(task=send_command, command="show cdp neighbors")
     task.host["facts"] = output.scrapli_response.genie_parse_output()
-#    print(task.host)
 #    print(task.host["facts"])
     inner_list = []
     outer_list = []
     test_dict = {}
     for key,value in task.host["facts"]["cdp"]["index"].items():
-#        print(key)
-#        print(value)
         inner_list.append(value["device_id"])
         inner_list.append(value["port_id"])
-#        print(inner_list)
         test_dict[value["local_interface"]] = inner_list
     print("Parsed output for {} is:> {}".format({task.host},test_dict))
+    for intf,data in test_dict.items():
+        print(intf)
+        print(data)
+        i=0
+        while(i<len(data)):
+            j=1+1
+            task.run(task=send_configs, command=["interface intf","description local intf to remote data[j] on device data[i]"])
+            i=i+2
 
 
 
