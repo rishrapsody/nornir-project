@@ -26,7 +26,7 @@ def pull_cdp(task):
 #        print(len(data))
         while(i<len(data)):
             j=i+1
-            task.run(task=send_configs, configs=["interface {}".format(intf),"description local {} to remote {} on device {}".format(intf,data[i],data[j]),"exit"])
+            task.run(task=send_configs, configs=["interface {}".format(intf),"description local {} to remote port {} on device {}".format(intf,data[j],data[i]),"exit"])
             i=i+2
 
 
