@@ -9,6 +9,7 @@ nr = InitNornir(config_file="config.yml")
 def pull_cdp(task):
     output = task.run(task=send_command, command="show cdp neighbors")
     task.host["facts"] = output.scrapli_response.genie_parse_output()
+    print(task.host)
     pprint(task.host["facts"])
 
 
