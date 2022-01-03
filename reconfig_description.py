@@ -18,13 +18,14 @@ def pull_cdp(task):
         inner_list.append(value["device_id"])
         inner_list.append(value["port_id"])
         test_dict[value["local_interface"]] = inner_list
-    print("Parsed output for {} is:> {}".format({task.host},test_dict))
+#    print("Parsed output for {} is:> {}".format({task.host},test_dict))
     for intf,data in test_dict.items():
-        print(intf)
-        print(data)
+#        print(intf)
+#        print(data)
         i=0
+#        print(len(data))
         while(i<len(data)):
-            j=1+1
+            j=i+1
             task.run(task=send_configs, command=["interface {}".format(intf),"description local {} to remote {} on device {}".format(intf,data[i],data[j]),"exit"])
             i=i+2
 
@@ -33,5 +34,5 @@ def pull_cdp(task):
 
 
 results = nr.run(task=pull_cdp)
-#print_result(results)
+print_result(results)
 #ipdb.set_trace()
