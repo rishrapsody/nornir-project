@@ -10,15 +10,18 @@ def pull_cdp(task):
     output = task.run(task=send_command, command="show cdp neighbors")
     task.host["facts"] = output.scrapli_response.genie_parse_output()
 #    print(task.host)
-    pprint(task.host["facts"])
+#    print(task.host["facts"])
     inner_list = []
     outer_list = []
     test_dict = {}
     for key,value in task.host["facts"]["cdp"]["index"].items():
-        inner_list.append(key["device_id"])
-        inner_list.append(key["port_id"])
-        test_dict[key["local_interface"]] = outer_list.append(inner_list)
-    pprint(test_dict)
+#        print(key)
+#        print(value)
+        inner_list.append(value["device_id"])
+        inner_list.append(value["port_id"])
+#        print(inner_list)
+        test_dict[value["local_interface"]] = inner_list
+    print("Parsed output for {} is:> {}".format({task.host},test_dict))
 
 
 
