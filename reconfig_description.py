@@ -25,7 +25,7 @@ def pull_cdp(task):
         i=0
         while(i<len(data)):
             j=1+1
-            task.run(task=send_configs, command=["interface intf","description local intf to remote data[j] on device data[i]"])
+            task.run(task=send_configs, command=["interface {}".format(intf),"description local {} to remote {} on device {}".format(intf,data[i],data[j]),"exit"])
             i=i+2
 
 
