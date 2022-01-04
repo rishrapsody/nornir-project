@@ -10,15 +10,18 @@ nr = InitNornir(config_file="config.yml")
 def pull_cdp(task):
     output = task.run(task=send_command, command="show cdp neighbors")
     task.host["facts"] = output.scrapli_response.genie_parse_output()
-    print(task.host["facts"])
-    inner_list = []
-    outer_list = []
+#    print(task.host["facts"])
+ #   inner_list = []
+#    outer_list = []
     test_dict = {}
-    for key,value in task.host["facts"]["cdp"].items():
+    for key,value in task.host["facts"]["cdp"]["index"].items():
+#        print(key)
+#        print(value)
+        inner_list = []
         inner_list.append(value["device_id"])
         inner_list.append(value["port_id"])
         test_dict[value["local_interface"]] = inner_list
-    print("Parsed output for {} is:> {}".format({task.host},test_dict))
+#    print("Parsed output for {} is:> {}".format({task.host},test_dict))
     for intf,data in test_dict.items():
 #        print(intf)
 #        print(data)
