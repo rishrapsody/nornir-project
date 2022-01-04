@@ -33,9 +33,6 @@ def pull_cdp(task):
             i=i+2
 
 
-
-
-
 results = nr.run(task=pull_cdp)
 print_result(results)
 #ipdb.set_trace()
