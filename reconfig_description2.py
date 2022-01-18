@@ -4,11 +4,12 @@ from nornir_scrapli.tasks import send_configs
 from nornir_utils.plugins.functions import print_result
 import ipdb
 from pprint import pprint
+import logging
 
 nr = InitNornir(config_file="config.yml")
 
 def pull_cdp(task):
-    output = task.run(task=send_command, command="show cdp neighbors")
+    output = task.run(task=send_command, command="show cdp neighbors",severity_level=logging.DEBUG)
     task.host["facts"] = output.scrapli_response.genie_parse_output()
 #    print(task.host["facts"])
  #   inner_list = []
