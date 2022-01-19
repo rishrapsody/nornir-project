@@ -27,4 +27,8 @@ bgp:
       remote_as: 65000
     - remote_ip: 8.8.8.8
       remote_as: 65000
+    - remote_ip: 4.4.4.4
+      remote_as: 65001
+    - remote_ip: 5.5.5.5
+      remote_as: 65001
 
