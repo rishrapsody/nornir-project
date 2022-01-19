@@ -8,6 +8,7 @@ interfaces:
     netmask: 255.255.255.255
 
 ospf:
+  default: 3
   - area: 3
     network: 172.32.10.0
 
