@@ -8,7 +8,10 @@ interfaces:
     netmask: 255.255.255.255
 
 ospf:
-  area: 0
+  - area: 0
+    network: 199.199.199.0
+  - area: 1
+    network: 172.12.10.0
 
 bgp:
   asn: 65000
