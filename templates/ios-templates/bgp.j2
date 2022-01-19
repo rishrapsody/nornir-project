@@ -5,7 +5,7 @@ no shutdown
 {% endfor %}
 
 router ospf 1
-{% for net in host.facts.ospf %}
+{% for net in host.facts.ospf.conf %}
 network {{ net.network }} 0.0.0.255 area {{ net.area }}
 {% endfor %}
 {% for intf in host.facts.interfaces %}
