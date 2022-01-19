@@ -9,6 +9,7 @@ router ospf 1
 {% if intf.ip == host.facts.bgp.rid %}
 network {{ intf.ip }} 0.0.0.0 area {{ host.facts.ospf.area }}
 {% endif %}
+{% endfor %}
 
 router bgp {{ host.facts.bgp.asn }}
 bgp router-id {{ host.facts.bgp.rid }}
