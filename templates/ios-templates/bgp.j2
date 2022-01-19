@@ -20,6 +20,7 @@ bgp router-id {{ host.facts.bgp.rid }}
 neighbor {{ neighbor.remote_ip }} remote-as {{ neighbor.remote_as }}
 neighbor {{ neighbor.remote_ip }} update-source {{ host.facts.bgp.source }}
 neighbor {{ neighbor.remote_ip }} soft-reconfiguration inbound
+neighbor {{ neighbor.remote_ip }} ebgp-multihop 4
 {% endfor %}
 {% for intf in host.facts.interfaces %}
 {% if intf.ip != host.facts.bgp.rid %}
