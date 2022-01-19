@@ -7,6 +7,9 @@ interfaces:
     ip: 77.77.77.77
     netmask: 255.255.255.255
 
+ospf:
+  area: 2
+
 bgp:
   asn: 65002
   rid: 7.7.7.7

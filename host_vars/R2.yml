@@ -7,6 +7,9 @@ interfaces:
     ip: 22.22.22.22
     netmask: 255.255.255.255
 
+ospf:
+  area: 0
+
 bgp:
   asn: 65000
   rid: 2.2.2.2

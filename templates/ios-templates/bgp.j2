@@ -4,6 +4,12 @@ ip address {{ intf.ip }} {{ intf.netmask }}
 no shutdown
 {% endfor %}
 
+router ospf 1
+{% for intf in host.facts.interfaces %}
+{% if intf.ip == host.facts.bgp.rid %}
+network {{ intf.ip }} 0.0.0.0 area {{ host.facts.ospf.area }}
+{% endif %}
+
 router bgp {{ host.facts.bgp.asn }}
 bgp router-id {{ host.facts.bgp.rid }}
 {% for neighbor in host.facts.bgp.neighbors %}
