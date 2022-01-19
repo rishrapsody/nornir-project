@@ -13,21 +13,21 @@ from nornir.core.filter import F
 nr = InitNornir(config_file="config.yml")
 
 def load_vars(task):
-    data = task.run(task=load_yaml, file=f"./host_vars/{task.host}.yml")
+    data = task.run(task=load_yaml, file=f"./host_vars/{task.host}.yml", severity_level=logging.DEBUG)
     task.host["facts"] = data.result
+#    ipdb.set_trace()
     create_bgp(task)
 
 def create_bgp(task):
     template = task.run(
-        task=template_file, template="bgp.j2", path=f"./templates/{task.host.platform}-templates"
-    )
+        task=template_file, template="bgp.j2", path=f"./templates/{task.host.platform}-templates", severity_level=logging.DEBUG)
     task.host["bgp_config"] = template.result
     rendered = task.host["bgp_config"]
     configuration = rendered.splitlines()
     task.run(task=send_configs, configs=configuration)
 
 
-routers = nr.filter(F(groups='rtrgroup'))
+routers = nr.filter(F(groups__contains='rtrgroup'))
 results = routers.run(task=load_vars)
 print_result(results)
 #ipdb.set_trace()
