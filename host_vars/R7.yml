@@ -9,8 +9,9 @@ interfaces:
 
 ospf:
   default: 2
-  - area: 2
-    network: 172.22.10.0
+  conf:
+    - area: 2
+      network: 172.22.10.0
 
 bgp:
   asn: 65002
