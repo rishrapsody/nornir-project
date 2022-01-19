@@ -7,6 +7,8 @@ from pprint import pprint
 import logging
 from nornir_jinja2.plugins.tasks import template_file
 from nornir_utils.plugins.tasks.data import load_yaml
+from nornir.core.filter import F
+
 
 nr = InitNornir(config_file="config.yml")
 
@@ -25,6 +27,7 @@ def create_bgp(task):
     task.run(task=send_configs, configs=configuration)
 
 
-results = nr.run(task=load_vars)
+routers = nr.filter(F(groups='rtrgroup'))
+results = routers.run(task=load_vars)
 print_result(results)
 #ipdb.set_trace()
