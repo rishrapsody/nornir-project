@@ -1,0 +1,19 @@
+{% for intf in interfaces %}
+int {{ intf.name }}
+ip address {{ intf.ip }} {{ intf.netmask }}
+no shutdown
+{% endfor %}
+
+router bgp {{ host.facts.bgp.asn }}
+router-id {{ host.facts.bgp.rid }}
+{% for neighbor in neighbors %}
+neighbor {{ neighbor.remote_ip }} remote-as {{ neighbor.remote_as }}
+neighbor {{ neighbor.remote_ip }} update-source {{ host.facts.bgp.source }}
+neighbor {{ neighbor.remote_ip }} soft-reconfiguration inbound
+{% endfor %}
+{% for intf in interfaces %}
+{% if intf.ip != {{ host.facts.bgp.rid }} %}
+network {{ intf.ip }} mask {{ intf.netmask }}
+{% endif %}
+{% endfor %}
+

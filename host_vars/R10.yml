@@ -1,0 +1,21 @@
+---
+interfaces:
+  - name: loopback0
+    ip: 10.10.10.10
+    netmask: 255.255.255.255
+  - name: loopback1
+    ip: 101.101.101.101
+    netmask: 255.255.255.255
+
+bgp:
+  asn: 65003
+  rid: 10.10.10.10
+  route-reflector: False
+  source: loopback0
+  neighbors:
+    - remote_ip: 8.8.8.8
+      remote_as: 65000
+    - remote_ip: 9.9.9.9
+      remote_as: 65003
+
+
