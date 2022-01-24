@@ -16,6 +16,8 @@ global_list = []
 def get_net(task):
     if task.host.platform == 'ios':
         ios_list = get_net_ios(task)
+        global_list.append(ios_list)
+        print(global_list)
     elif task.host.platform == 'iosxr':
         find_ip_iosxr(task)
     elif task.host.platform == 'nxos':
@@ -26,8 +28,17 @@ def get_net(task):
 def get_net_ios(task):
     output = task.run(task=send_command, command="show ip int brief", severity_level=logging.DEBUG)
     task.host["facts"] = output.scrapli_response.genie_parse_output()
-    print(task.host)
-    pprint(task.host["facts"])
+#    print(task.host)
+#    pprint(task.host["facts"])
+    sub_list = []
+    for key,value in task.host["facts"]["interface"].items():
+        if value["ip_address"] != unassigned:
+            sub_list.append(value["ip_address"])
+        else:
+            pass
+    print(f"list for {task.host} is " + sub_list)
+    return(sub_list)
+
 
 
 
