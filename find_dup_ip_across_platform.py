@@ -16,8 +16,8 @@ global_list = []
 def get_net(task):
     if task.host.platform == 'ios':
         ios_list = get_net_ios(task)
-        global_list.append(ios_list)
-        print(global_list)
+        global_list.extend(ios_list)
+        print("Global list is {}".format(global_list))
     elif task.host.platform == 'iosxr':
         find_ip_iosxr(task)
     elif task.host.platform == 'nxos':
@@ -37,8 +37,8 @@ def get_net_ios(task):
         if value["ip_address"] != "unassigned":
 #            print("inside")
             sub_list.append(value["ip_address"])
-    print("Inner list for host {} is {}".format(task.host,sub_list))
-    print("i am outside for loop")
+#    print("Inner list for host {} is {}".format(task.host,sub_list))
+#    print("i am outside for loop")
     return(sub_list)
 
 
