@@ -35,6 +35,7 @@ def get_net_ios(task):
     for key,value in task.host["facts"]["interface"].items():
         print(value["ip_address"])
         if value["ip_address"] != "unassigned":
+            print("inside")
             sub_list.append(value["ip_address"])
     print(f"list for {task.host} is " + sub_list)
     return(sub_list)
