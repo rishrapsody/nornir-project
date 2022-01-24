@@ -27,7 +27,7 @@ def get_net(task):
         find_ip_nxos(task)
     else:
         find_ip_junos(task)
-    l = item for item in count if count[item]>1]
+    l = list[item for item in count if count[item]>1]
     print(item)
     print(l)
 
