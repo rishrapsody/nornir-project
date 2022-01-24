@@ -18,7 +18,7 @@ def get_net(task):
     if task.host.platform == 'ios':
         ios_list = get_net_ios(task)
         global_list.extend(ios_list)
-        print("Global list is {}".format(global_list))
+#        print("Global list is {}".format(global_list))
         count = Counter(global_list)
         print(count)
     elif task.host.platform == 'iosxr':
@@ -27,6 +27,9 @@ def get_net(task):
         find_ip_nxos(task)
     else:
         find_ip_junos(task)
+    l = item for item in count if count[item]>1]
+    print(item)
+    print(l)
 
 def get_net_ios(task):
     output = task.run(task=send_command, command="show ip int brief", severity_level=logging.DEBUG)
