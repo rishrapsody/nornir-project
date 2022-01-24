@@ -31,10 +31,10 @@ def get_net_ios(task):
 #    print(task.host)
 #    pprint(task.host["facts"])
     sub_list = []
-    print(task.host["facts"]["interface"].items())
+#    print(task.host["facts"]["interface"].items())
     for key,value in task.host["facts"]["interface"].items():
-        print(value)
-        if value["ip_address"] != unassigned:
+#        print(value)
+        if value["ip_address"] != "unassigned":
             sub_list.append(value["ip_address"])
         else:
             pass
