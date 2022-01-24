@@ -27,10 +27,10 @@ def create_bgp(task):
     task.run(task=send_configs, configs=configuration)
 
 def get_int(task):
-    output = task.run(task=send_command, command="show ip int br")
+    output = task.run(task=send_command, command="show interface")
     task.host["facts"] = output.scrapli_response.genie_parse_output()
 
 devices = nr.filter(F(groups__contains='cloud'))
 results = devices.run(task=get_int)
 print_result(results)
-#ipdb.set_trace()
+ipdb.set_trace()
