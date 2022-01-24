@@ -33,11 +33,12 @@ def get_net_ios(task):
     sub_list = []
 #    print(task.host["facts"]["interface"].items())
     for key,value in task.host["facts"]["interface"].items():
-        print(value["ip_address"])
+ #       print(value["ip_address"])
         if value["ip_address"] != "unassigned":
-            print("inside")
+#            print("inside")
             sub_list.append(value["ip_address"])
-    print(f"list for {task.host} is " + sub_list)
+    print("Inner list for host {} is {}".format(task.host,sub_list))
+    print("i am outside for loop")
     return(sub_list)
 
 
