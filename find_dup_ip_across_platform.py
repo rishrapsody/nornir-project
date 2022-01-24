@@ -28,8 +28,7 @@ def get_net(task):
     else:
         find_ip_junos(task)
 
-    dup_ip = [item for item, count in Counter(global_list).items() if count > 1]
-    print(dup_ip)
+
 
 
 def get_net_ios(task):
@@ -53,3 +52,6 @@ def get_net_ios(task):
 
 #devices = nr.filter(F(groups__contains='cloud'))
 results = nr.run(task=get_net)
+
+dup_ip = [item for item, count in Counter(global_list).items() if count > 1]
+print(dup_ip)
