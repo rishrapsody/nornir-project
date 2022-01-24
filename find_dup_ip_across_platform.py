@@ -9,6 +9,7 @@ from nornir_jinja2.plugins.tasks import template_file
 from nornir_utils.plugins.tasks.data import load_yaml
 from nornir.core.filter import F
 from ipaddress import IPv4Address
+from collections import Counter
 
 nr = InitNornir(config_file="config.yml")
 global_list = []
@@ -18,6 +19,8 @@ def get_net(task):
         ios_list = get_net_ios(task)
         global_list.extend(ios_list)
         print("Global list is {}".format(global_list))
+        count = Counter(global_list)
+        print(count)
     elif task.host.platform == 'iosxr':
         find_ip_iosxr(task)
     elif task.host.platform == 'nxos':
