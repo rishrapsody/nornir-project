@@ -24,8 +24,9 @@ def get_net(task):
         find_ip_junos(task)
 
 def get_net_ios(task):
-    output = task.run(send_command, command="show interface", severity_level=logging.DEBUG)
+    output = task.run(send_command, command="show interface")
     task.host["facts"] = output.scrapli_response.genie_parse_output()
+    print(task.host)
     pprint(task.host["facts"])
 
 
