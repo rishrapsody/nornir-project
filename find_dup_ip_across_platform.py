@@ -93,7 +93,7 @@ def get_ip_ios(task):
     for key,value in task.host["facts"]["interface"].items():
         if value["ip_address"] != "unassigned":
             sub_list.append(value["ip_address"])
-    print("sub list for {} is {}".format(task.host, sub_list))
+    print("Intf list for {} is {}".format(task.host, sub_list))
     return(sub_list)
 
 def get_ip_nxos(task):
@@ -106,7 +106,7 @@ def get_ip_nxos(task):
                 sub_list.append(j["ip"])
         else:
             pass
-    print("sub list for {} is {}".format(task.host,sub_list))
+    print("Intf list for {} is {}".format(task.host,sub_list))
     return(sub_list)
 
 def get_ip_iosxr(task):
@@ -118,12 +118,12 @@ def get_ip_iosxr(task):
             sub_list.append(value["ip_address"])
         else:
             pass
-    print("sub list for {} is {}".format(task.host, sub_list))
+    print("Intf list for {} is {}".format(task.host, sub_list))
     return(sub_list)
 
-devices = nr.filter(F(groups__contains='cloud'))
-results = devices.run(task=get_ip)
-#results = nr.run(task=get_ip)
+#devices = nr.filter(F(groups__contains='cloud'))
+#results = devices.run(task=get_ip)
+results = nr.run(task=get_ip)
 
 dup_ip = [item for item, count in Counter(global_list).items() if count > 1]
 if dup_ip:
