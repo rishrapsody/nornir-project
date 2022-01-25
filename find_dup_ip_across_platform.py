@@ -14,6 +14,8 @@ outer_dict = { }
 global outer_dict2
 outer_dict2 = { }
 global dup_ip
+global final_list
+final_list = []
 
 def get_dup_devices(task):
     if task.host.platform == 'ios' or task.host.platform == 'iosxr':
@@ -35,12 +37,17 @@ def get_cisco_devices(task):
     for key, value in task.host["facts_new"]["interface"].items():
         if value["ip_address"] != "unassigned":
             inner_dict = { }
- #           inner_list = []
+
             if value["ip_address"] in dup_ip:
-                inner_dict[task.host] = key
-                inner_list.append(inner_dict)
-                outer_dict[value["ip_address"]] = inner_list
-                inner_dict = { }
+                inner_list = []
+                for i in dup_ip:
+                    if i == value["ip_address"]:
+                        inner_dict[key] = task.host
+                        final_list.append("{} is configured on interface {} on device {}".format(i,key,task.host))
+
+                    else:
+                        pass
+
             else:
                 pass
         else:
@@ -58,6 +65,7 @@ def get_nxos_devices(task):
                     inner_dict2[task.host] = key
                     inner_list2.append(inner_dict2)
                     outer_dict2[j["ip"]] = inner_list2
+                    final_list.append("{} is configured on interface {} on device {}".format(j["ip"], key, task.host))
                     inner_dict2 = {}
         else:
             pass
@@ -119,10 +127,16 @@ results = devices.run(task=get_ip)
 
 dup_ip = [item for item, count in Counter(global_list).items() if count > 1]
 if dup_ip:
+    print("\n")
     print("Duplicate IP's found: {}".format(dup_ip))
     temp = nr.run(task=get_dup_devices)
-    print(outer_dict)
-    print(outer_dict2)
+#    print(outer_dict)
+#    print(outer_dict2)
+#    print(sorted(final_list))
+    print("#" * 60)
+    for line in sorted(final_list):
+        print(line)
+    print("#" * 60)
 
 else:
     print("No Duplicate IPs found")
