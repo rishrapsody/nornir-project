@@ -19,5 +19,5 @@ def check_intf(task):
 
 
 def test_intf(nr):
-    devices = nr.filter(F(groups__contains='rtrgroup'))
-    devices.run(task=check_intf)
+#    devices = nr.filter(F(groups__contains='rtrgroup'))
+    nr.run(task=check_intf)
