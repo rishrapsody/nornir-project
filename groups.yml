@@ -15,3 +15,7 @@ eur: {}
 apac: {}
 
 cloud: {}
+
+devnet: {}
+
+junos: {}

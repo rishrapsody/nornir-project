@@ -5,6 +5,8 @@ import ipdb
 import logging
 from nornir.core.filter import F
 from collections import Counter
+from nornir_napalm.plugins.tasks import napalm_get
+import invoke
 
 nr = InitNornir(config_file="config.yml")
 global_list = []
@@ -84,7 +86,8 @@ def get_ip(task):
         nxos_list = get_ip_nxos(task)
         global_list.extend(nxos_list)
     else:
-        find_ip_junos(task)
+        junos_list = get_ip_junos(task)
+        global_list.extend(junos_list)
 
 def get_ip_ios(task):
     output = task.run(task=send_command, command="show ip int brief", severity_level=logging.DEBUG)
@@ -121,9 +124,17 @@ def get_ip_iosxr(task):
     print("Intf list for {} is {}".format(task.host, sub_list))
     return(sub_list)
 
-#devices = nr.filter(F(groups__contains='cloud'))
-#results = devices.run(task=get_ip)
-results = nr.run(task=get_ip)
+def get_ip_junos(task):
+#    output = task.run(task=send_command, command="show interfaces terse", severity_level=logging.DEBUG)
+#    print(output.result)
+    output = task.run(task=napalm_get, getters=["config"])
+    print(output.result)
+    task.host["facts"] = output.scrapli_response.genie_parse_output()
+
+devices = nr.filter(F(groups__contains='junos'))
+results = devices.run(task=get_ip)
+ipdb.set_trace()
+#results = nr.run(task=get_ip)
 
 dup_ip = [item for item, count in Counter(global_list).items() if count > 1]
 if dup_ip:
