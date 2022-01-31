@@ -27,10 +27,10 @@ def create_bgp(task):
     task.run(task=send_configs, configs=configuration)
 
 def get_int(task):
-    output = task.run(task=send_command, command="show interface")
+    output = task.run(task=send_command, command="show ip interface brief")
     task.host["facts"] = output.scrapli_response.genie_parse_output()
 
-devices = nr.filter(F(groups__contains='cloud'))
+devices = nr.filter(F(groups__contains='rtrgroup'))
 results = devices.run(task=get_int)
 print_result(results)
 ipdb.set_trace()
