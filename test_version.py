@@ -12,7 +12,7 @@ def check_intf(task):
     try:
         assert data == 4, f"{task.host} FAILED"
     except Exception:
-        pass
+        assert False, f"{task.host} FAILED"
 
 
 
