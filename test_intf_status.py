@@ -12,7 +12,7 @@ def check_intf(task):
         if data['ip_address'] != "unassigned":
 #            print("iam here")
             print("Device {} interface {} Protocol is {}".format(task.host,intf,data['protocol']))
-            assert data['protocol'] == 'up', f"{task.host} FAILED. {intf} protocol is DOWN"
+            assert data['protocol'] == 'down', f"{task.host} FAILED. {intf} protocol is DOWN"
             assert data['status'] == 'up', f"{task.host} FAILED. {intf} status is DOWN"
 
 
