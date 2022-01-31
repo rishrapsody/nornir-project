@@ -7,6 +7,7 @@ import ipdb
 def check_intf(task):
     result = task.run(task=send_command, command="show ip interface brief")
     task.host["facts"] = result.scrapli_response.genie_parse_output()
+    print(task.host["facts"])
     for intf,data in task.host["facts"]["interface"].items():
         if data['ip_address'] != "unassigned":
             print(data)
