@@ -9,10 +9,8 @@ def check_intf(task):
     task.host["facts"] = result.scrapli_response.genie_parse_output()
 #    print("Device {} has {} Fa Interfaces".format({task.host},task.host["facts"]["version"]["number_of_intfs"]['FastEthernet']))
     data = int(task.host["facts"]["version"]["number_of_intfs"]['FastEthernet'])
-    try:
-        assert data == 4, f"{task.host} FAILED"
-    except Exception:
-        assert False, f"{task.host} FAILED"
+
+    assert data == 4, f"{task.host} FAILED"
 
 
 
