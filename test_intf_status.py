@@ -13,6 +13,7 @@ def check_intf(task):
 #            print("iam here")
             print("Device {} interface {} Protocol is {}".format(task.host,intf,data['protocol']))
             assert data['protocol'] == 'down', f"{task.host} FAILED. {intf} protocol is DOWN"
+            print("assert check")
             assert data['status'] == 'up', f"{task.host} FAILED. {intf} status is DOWN"
 
 
