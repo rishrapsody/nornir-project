@@ -23,7 +23,7 @@ class TestVersionCheck:
 
     @pytest.fixture(scope="class", autouse=True)
     def setup_teardown(self,pytestnr):
-        devices = nr.filter(F(groups__contains='lab'))
+        devices = pytestnr.filter(F(groups__contains='lab'))
         devices.run(task=check_intf)
         yield
         for host in devices.inventory.hosts.values():
