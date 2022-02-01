@@ -27,7 +27,7 @@ def create_bgp(task):
     task.run(task=send_configs, configs=configuration)
 
 def get_int(task):
-    output = task.run(task=send_command, command="show ip interface brief")
+    output = task.run(task=send_command, command="show version")
     task.host["facts"] = output.scrapli_response.genie_parse_output()
 
 devices = nr.filter(F(groups__contains='rtrgroup'))

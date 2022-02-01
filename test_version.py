@@ -9,7 +9,7 @@ nr = InitNornir(config_file="config.yml")
 
 def check_intf(task):
     result = task.run(task=send_command, command="show version")
-    task.host["facts"] = result.scrapli_response.genie_parse_output()
+    task.host["version_data"] = result.scrapli_response.genie_parse_output()
 #    print("Device {} has {} Fa Interfaces".format({task.host},task.host["facts"]["version"]["number_of_intfs"]['FastEthernet']))
  #   data = int(task.host["facts"]["version"]["number_of_intfs"]['FastEthernet'])
 #    assert data == 4, f"{task.host} FAILED"
@@ -19,21 +19,22 @@ def get_names():
     return devices
 
 
-class TestVersion:
+class TestVersionCheck:
 
     @pytest.fixture(scope="class", autouse=True)
-    def setup_teardown(self,pytestnr)
+    def setup_teardown(self,pytestnr):
         devices = nr.filter(F(groups__contains='lab'))
         devices.run(task=check_intf)
         yield
-        for host in devices.hosts.values():
-            host.data.pop("facts")
+        for host in devices.inventory.hosts.values():
+            host.data.pop("version_data")
 
-    @pytest.test.parametrize(
+    @pytest.mark.parametrize(
         'device_name', get_names()
     )
 
     def test_facts(self, pytestnr, device_name):
         nr_host = pytestnr.inventory.hosts[device_name]
-        data = int(nr_host["facts"]["version"]["number_of_intfs"]['FastEthernet'])
+#        ipdb.set_trace()
+        data = int(nr_host["version_data"]["version"]["number_of_intfs"]['FastEthernet'])
         assert data == 4, f"{nr_host} FAILED"
