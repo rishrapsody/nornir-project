@@ -38,7 +38,7 @@ class TestVersionCheck:
         for intf, data in nr_host["raw_data"]["interface"].items():
             if data['ip_address'] != "unassigned":
                 intf_count = intf_count + 1
-                if data['protocol'] = 'up' and data['status'] == 'up':
+                if data['protocol'] == 'up' and data['status'] == 'up':
                     up_count = up_count + 1
         assert intf_count == up_count, f"{nr_host} FAILED. Intf in UP status:{up_count} does not match configured Intf:{intf_count}"
 
