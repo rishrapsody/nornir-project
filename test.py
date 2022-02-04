@@ -26,11 +26,11 @@ def create_bgp(task):
     configuration = rendered.splitlines()
     task.run(task=send_configs, configs=configuration)
 
-def get_int(task):
-    output = task.run(task=send_command, command="show version")
+def get_command_output(task):
+    output = task.run(task=send_command, command="ping 8.8.8.8 repeat 2")
     task.host["facts"] = output.scrapli_response.genie_parse_output()
 
-devices = nr.filter(F(groups__contains='rtrgroup'))
-results = devices.run(task=get_int)
+devices = nr.filter(F(groups__contains='lab'))
+results = devices.run(task=get_command_output)
 print_result(results)
 ipdb.set_trace()
