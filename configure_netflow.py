@@ -5,6 +5,7 @@ from nornir_utils.plugins.functions import print_result
 import ipdb
 from pprint import pprint
 import logging
+from nornir.core.filter import F
 
 nr = InitNornir(config_file="config.yml")
 
