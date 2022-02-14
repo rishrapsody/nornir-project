@@ -23,7 +23,7 @@ def netflow_config(task):
     for intf in int_list:
         task.run(task=send_configs, configs=["interface {}".format(intf),"ip route-cache flow","exit"])
 
-lab_filter = nr.filter(F(group__contains='lab'))
+lab_filter = nr.filter(F(groups__contains='lab'))
 results = lab_filter.run(task=netflow_config)
 print_result(results)
 #ipdb.set_trace()
