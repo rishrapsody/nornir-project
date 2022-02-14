@@ -12,7 +12,7 @@ nr = InitNornir(config_file="config.yml")
 def netflow_config(task):
     output = task.run(task=send_command, command="show ip interface brief",severity_level=logging.DEBUG)
     task.host["facts"] = output.scrapli_response.genie_parse_output()
-    task.run(task=send_configs, configs=["ip flow-export destination 192.168.1.19 2055"])
+    task.run(task=send_configs, configs=["ip flow-export destination 192.168.1.19 2055","ip flow-export version 9"])
 
     int_list = []
     for key,value in task.host["facts"]["interface"].items():
