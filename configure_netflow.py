@@ -9,9 +9,10 @@ from nornir.core.filter import F
 
 nr = InitNornir(config_file="config.yml")
 
-def get_int(task):
+def netflow_config(task):
     output = task.run(task=send_command, command="show ip interface brief",severity_level=logging.DEBUG)
     task.host["facts"] = output.scrapli_response.genie_parse_output()
+    task.run(task=send_configs, configs=["ip flow-export destination 192.168.1.19 2055"])
 
     int_list = []
     for key,value in task.host["facts"]["interface"].items():
@@ -20,9 +21,9 @@ def get_int(task):
 
 
     for intf in int_list:
-        task.run(task=send_configs, configs=["ip flow-export destination 192.168.1.19 2055","ip flow-export version 9","interface {}".format(intf),"ip route-cache flow","exit"], severity_level=logging.DEBUG)
+        task.run(task=send_configs, configs=["interface {}".format(intf),"ip route-cache flow","exit"])
 
 lab_filter = nr.filter(F(group__contains='lab'))
-results = lab_filter.run(task=get_int)
+results = lab_filter.run(task=netflow_config)
 print_result(results)
 #ipdb.set_trace()
